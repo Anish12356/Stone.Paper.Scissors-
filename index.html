@@ -1,59 +1,86 @@
 <!-- @format -->
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stone Paper Scissor</title>
+    <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1 class="title">Stone • Paper • Scissor</h1>
+    <header>
+      <div class="box">git status        # see what changed
+git add .         # stage changes
+git commit -m "Describe what you changed"
+git push origin main
 
-    <!-- Scoreboard -->
-    <div class="scoreboard">
-      <div class="score">
-        <h2>You</h2>
-        <p id="user-score">0</p>
+        <h1>Rock<br />Paper<br />Scissors</h1>
+
+        <div class="game-score">
+          <div class="score-box">
+            <p>COMPUTER<br />SCORE</p>
+            <h2 id="computer-score">0</h2>
+          </div>
+          <div class="score-box">
+            <p>YOUR<br />SCORE</p>
+            <h2 id="your-score">0</h2>
+          </div>
+        </div>
       </div>
-      <div class="score">
-        <h2>Computer</h2>
-        <p id="cpu-score">0</p>
+    </header>
+
+    <!-- GAME AREA -->
+    <div class="game-area" id="gameArea">
+      <svg class="lines" width="300" height="260">
+        <line x1="150" y1="45" x2="45" y2="215" />
+        <line x1="150" y1="45" x2="255" y2="215" />
+        <line x1="45" y1="215" x2="255" y2="215" />
+      </svg>
+
+      <div class="choice rock" data-choice="rock">✊</div>
+      <div class="choice scissor" data-choice="scissor">✌️</div>
+      <div class="choice paper" data-choice="paper">✋</div>
+    </div>
+
+    <!-- ROUND RESULT -->
+    <div class="result hidden" id="resultScreen">
+      <div class="pick-area">
+        <p>YOU PICKED</p>
+        <div class="choice big" id="userPick"></div>
+      </div>
+
+      <div class="result-text">
+        <h2 id="resultMessage"></h2>
+        <button id="playAgain">PLAY AGAIN</button>
+      </div>
+
+      <div class="pick-area">
+        <p>PC PICKED</p>
+        <div class="choice big" id="pcPick"></div>
       </div>
     </div>
 
-    <!-- Game Buttons -->
-    <div class="choices">
-      <div class="choice" data-choice="stone">
-        <img src="assets/s.jpg" alt="" />
-      </div>
-      <div class="choice" data-choice="paper">
-        <img src="assets/p.jpg" alt="" />
-      </div>
-      <div class="choice" data-choice="Scissor">
-        <img src="assets/r.jpg" alt="" />
-      </div>
+    <!-- BUTTONS -->
+    <button class="rules-btn" id="rulesBtn">RULES</button>
+    <button class="nextBtn" id="nextBtn">NEXT</button>
+
+    <!-- FINAL RESULT -->
+    <div class="final hidden" id="finalScreen">
+      <div class="trophy">🏆</div>
+      <h1 id="finalText"></h1>
+      <button id="restart">PLAY AGAIN</button>
     </div>
 
-    <!-- Result -->
-    <h2 id="result-text">Make a choice!</h2>
-
-    <!-- Next Round Button -->
-    <button id="next-round" class="hidden">Next Round</button>
-
-    <!-- Rules Button -->
-    <button id="rules-btn" class="rules-btn">Rules</button>
-
-    <!-- Rules Popup -->
-    <div id="rules-popup" class="hidden popup-bg">
+    <!-- RULES MODAL -->
+    <div class="rules-modal" id="rulesModal">
       <div class="rules-box">
-        <button id="close-rules" class="close-btn">X</button>
-        <h2>Game Rules</h2>
+        <span id="closeRules">✖</span>
+        <h2>Rules</h2>
         <ul>
-          <li>Stone beats Scissor</li>
-          <li>Scissor beats Paper</li>
-          <li>Paper beats Stone</li>
+          <li>Rock beats Scissors</li>
+          <li>Scissors beats Paper</li>
+          <li>Paper beats Rock</li>
         </ul>
       </div>
     </div>
